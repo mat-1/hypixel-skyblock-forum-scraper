@@ -51,8 +51,11 @@ async def main():
 			if page_load_time < 3:
 				await asyncio.sleep(3 - page_load_time)
 
-			with open('output.json', 'w') as f:
-				f.write(json.dumps(data, indent=2))
+			try:
+				with open('output.json', 'w') as f:
+					f.write(json.dumps(data, indent=2))
+			except OSError:
+				print('\nfailed writing??? wacky\n')
 			print(len(data), page_number)
 		print('being ratelimited :( trying again in a minute')
 		await asyncio.sleep(60)
