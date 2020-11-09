@@ -7,7 +7,10 @@ import json
 loop = asyncio.get_event_loop()
 
 with open('output.json', 'r') as f:
-	data = json.loads(f.read())
+	try:
+		data = json.loads(f.read())
+	except json.decoder.JSONDecodeError:
+		data = []
 
 existing_titles = set([d['title'] for d in data])
 
