@@ -9,6 +9,7 @@ with open('output.json', 'r') as f:
 	try:
 		data = json.loads(f.read())
 	except json.decoder.JSONDecodeError:
+		print('no data')
 		data = []
 
 existing_titles = set([d['title'] for d in data])
@@ -18,7 +19,6 @@ async def main():
 	first_page = True
 	page_posts = []
 	page_number = 0
-	data = []
 
 	while True:
 		while page_posts or first_page:
@@ -52,7 +52,7 @@ async def main():
 				await asyncio.sleep(5 - page_load_time)
 
 			with open('output.json', 'w') as f:
-				f.write(json.dumps(data))
+				f.write(json.dumps(data, indent=2))
 			print(len(data), page_number)
 		print('being ratelimited :( trying again in a minute')
 		await asyncio.sleep(60)
