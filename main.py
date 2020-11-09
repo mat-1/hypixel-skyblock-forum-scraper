@@ -48,8 +48,8 @@ async def main():
 
 			print('gotten page')
 			page_load_time = page_end_time - page_start_time
-			if page_load_time < 5:
-				await asyncio.sleep(5 - page_load_time)
+			if page_load_time < 3:
+				await asyncio.sleep(3 - page_load_time)
 
 			with open('output.json', 'w') as f:
 				f.write(json.dumps(data, indent=2))
