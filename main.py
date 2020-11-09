@@ -36,8 +36,8 @@ async def main():
 				thread = await forums.get_thread(post['id'])
 				thread_end_time = time.time()
 				thread_load_time = thread_end_time - thread_start_time
-				if thread_load_time < .5:
-					await asyncio.sleep(.5 - thread_load_time)
+				if thread_load_time < 1:
+					await asyncio.sleep(1 - thread_load_time)
 				if not thread: continue
 				if thread['title'] not in existing_titles:
 					print('added post', thread['title'])
