@@ -39,9 +39,11 @@ reaction_id_to_names = {
 	'15': 'Bug',
 }
 
+
 def avatar_from_id(user_id):
 	id_start = str(user_id)[:-3]
 	return f'https://hypixel.net/data/avatars/l/{id_start}/{user_id}.jpg'
+
 
 async def get_recent_posts(forum='skyblock', page=1):
 	forum_ids = {
