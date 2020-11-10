@@ -48,8 +48,8 @@ async def main():
 
 			print('gotten page')
 			page_load_time = page_end_time - page_start_time
-			if page_load_time < 3:
-				await asyncio.sleep(3 - page_load_time)
+			if page_load_time < 2:
+				await asyncio.sleep(2 - page_load_time)
 
 			try:
 				with open('output.json', 'w') as f:
@@ -60,5 +60,6 @@ async def main():
 		print('being ratelimited :( trying again in a minute')
 		await asyncio.sleep(60)
 		page_number -= 1
+		first_page = True
 
 loop.run_until_complete(main())
